@@ -1,0 +1,60 @@
+---
+title: 'Lab 5'
+author: "Yijing Lu"
+date: 'Oct 15 2018'
+output:
+  pdf_document:
+    latex_engine: xelatex
+    includes:
+    toc: yes
+    number_sections: yes
+    keep_tex: yes
+header-includes: 
+- \usepackage{graphicx}
+- \usepackage{float}
+---
+
+```{r options, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE, error=FALSE, message=TRUE, warning=TRUE)
+isSolution = TRUE
+seeResults = 'hide'
+```
+
+#Q1: betting on at least one six in 4 throws of a dice
+```{r}
+count <- 0
+result <- function(N) {
+    for(i in seq_len(N)) {
+       x = sample(1:6, 4, replace=T)
+    if(6 %in% x ) {
+        count = count + 1
+        } 
+    }
+    prop = round(count / N, 3)
+    return(prop)
+}
+
+result(1000)
+result(10000)
+```
+
+# Q2: find the smallest element of a given vector
+```{r}
+findMin <- function(x) {
+    if (is.null(x)) {
+        return(x)
+    } else {
+        min = x[1]
+        index = 1
+        for(i in 1:length(x)) {
+            if (x[i] < min) {
+                min = x[i]
+                index = i
+            }
+        }
+        return(c(min, index))
+    }
+}
+
+findMin(c(1, 4, 2, 0, 5))
+```
